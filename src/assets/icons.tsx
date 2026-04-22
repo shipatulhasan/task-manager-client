@@ -7,7 +7,7 @@ export const LogoWhite = (props: React.SVGProps<SVGSVGElement>) => (
     <text
       x={80}
       y={38}
-      fill="#f8f8f8"
+      fill="#172B4D"
       fontFamily="Inter, Arial, sans-serif"
       fontSize={22}
       fontWeight={600}
@@ -17,7 +17,7 @@ export const LogoWhite = (props: React.SVGProps<SVGSVGElement>) => (
     <text
       x={80}
       y={56}
-      fill="#f8f8f8"
+      fill="#42526E"
       fontFamily="Inter, Arial, sans-serif"
       fontSize={18}
     >
