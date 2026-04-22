@@ -1,10 +1,16 @@
-import { LogoWhite } from "@/assets/icons"
+import { LogoDark, LogoWhite } from "@/assets/icons"
+import { ModeToggle } from "@/components/mode-toggler"
+import { useTheme } from "@/providers/theme-provider"
 
 const Navbar = () => {
+  const {theme} = useTheme()
   return (
-    <nav className="w-full bg-gray-100 text-white p-4">
+    <nav className="w-full p-4">
       <div className="container mx-auto flex justify-between items-center">
-        <LogoWhite />
+        {
+          theme === "dark" ? <LogoDark /> : <LogoWhite />
+        }
+        <ModeToggle/>
       </div>
     </nav>
   )
