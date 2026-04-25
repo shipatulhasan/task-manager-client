@@ -1,16 +1,21 @@
-import App from "@/App";
-import {createBrowserRouter} from "react-router";
+import MainLayout from "@/components/layout/mainLayout";
+import Tasks from "@/pages/tasks";
+import { createBrowserRouter } from "react-router";
 
 const router = createBrowserRouter([
   {
     path: "/",
     // element: <div>Hello World</div>,
-    Component: App,
+    Component: MainLayout,
     children: [
       {
         // path: "/tasks",
         index: true,
-        Component: () => <div>Tasks</div>
+      Component:Tasks
+      },
+      {
+        path: "/tasks",
+        Component:Tasks
       }
     ]
   },
