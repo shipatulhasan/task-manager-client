@@ -1,5 +1,5 @@
 import type { RootState } from "@/redux/store";
-import type { ITask } from "@/type";
+import type { DraftTask, ITask } from "@/type";
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import { v4 as uuid4 } from "uuid";
 
@@ -34,7 +34,7 @@ const  initialState:InitialState ={
     updatedAt: "2023-12-10"
   }]
 }
-type DraftTask = Pick<ITask, 'title' | 'description' | 'priority' | 'dueDate'>
+
 const crateTask = (taskData: DraftTask): ITask => {
         const id = uuid4()
       return {
@@ -49,13 +49,26 @@ const tasksSlice = createSlice({
   name: 'tasks',
   initialState,
   reducers: {
-    addTask: (state, action:PayloadAction<DraftTask>) => {
+    createTask: (state, action:PayloadAction<DraftTask>) => {
       const newTask = crateTask(action.payload)
       state.tasks.push(newTask)
+    },
+    toogleTaskStatus: (state, action: PayloadAction<string>) => {
+      state.tasks.forEach(task => {
+        task.id==action.payload &&(task.isCompleted = !task.isCompleted)
+      })
+    },
+    deleteTask: (state, action: PayloadAction<string>) => {
+      state.tasks = state.tasks.filter(task=>task.id!=action.payload)
+    },
+    updateTask: (state, action: PayloadAction<ITask>) => {
+      const {id,...rest} = action.payload
+      const existingTask = state.tasks.find(task => task?.id == id)
+      if(existingTask) Object.assign(existingTask,rest)
     }
   }
 })
-export const {addTask}= tasksSlice.actions
+export const {createTask,updateTask,toogleTaskStatus,deleteTask}= tasksSlice.actions
 export const selectTasks = (state:RootState)=>state.todo.tasks
 
 export default tasksSlice.reducer 
