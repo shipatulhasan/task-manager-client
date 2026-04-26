@@ -1,6 +1,6 @@
 
 import { AddTaskModal } from "@/components/module/tasks/AddTaskModal"
-import TaskCardMini from "@/components/module/tasks/taskCardMini"
+import TaskCardMini from "@/components/module/tasks/TaskCardMini"
 import { selectTasks } from "@/redux/features/tasks/taskSlice"
 import { useAppSelecotor } from "@/redux/hook"
 
